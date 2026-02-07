@@ -1,22 +1,91 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using Godot;
 
 namespace Minoulation.Player;
 
 public partial class PlayerController : Node
 {
-    private Vector2 _targetPosition;
-    private Camera2D _playerCamera;
+	[Export] 
+	private Camera2D PlayerCamera;
+	private Vector2 _targetPosition => _selectedCharacter?.Position ?? PlayerCamera.Position;
+	private bool _controllerActive;
+	private List<Cat> _characters = new();
+	private Cat _selectedCharacter;
 
-    public override void _Ready()
-    {
-        _targetPosition = _playerCamera.GlobalPosition;
-    }
+	public void EnablePlayerController(List<Cat> characterBody2Ds)
+	{
+		_characters = characterBody2Ds;
+		_controllerActive = true;
+		if (_characters.Count > 0)
+		{
+			_selectedCharacter = _characters[0];
+		}
+		else
+		{
+			GD.PrintErr("No characters");
+		}
+	}
 
-    public override void _Process(double delta)
-    {
-        if (Mathf.Abs(_playerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
-        {
-            _playerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta);
-        }
-    }
+	public override void _Input(InputEvent @event)
+	{
+		base._Input(@event);
+
+		if (@event.IsActionPressed("NextCharacter"))
+		{
+			SetRightCharacter();
+		}
+
+		if (@event.IsActionPressed("PreviousCharacter"))
+		{
+			SetLeftCharacter();
+		}
+	}
+
+	private void SetLeftCharacter()
+	{
+		var orderedLeftCharacters = _characters.OrderBy(c => c.Position.X).ToList();
+		int selectedIndex = orderedLeftCharacters.IndexOf(_selectedCharacter);
+
+		if (selectedIndex == 0 && orderedLeftCharacters.Last() != null)
+		{
+			_selectedCharacter = orderedLeftCharacters.Last();
+		}
+		else
+		{
+			_selectedCharacter = orderedLeftCharacters[selectedIndex - 1];
+		}
+	}
+
+	private void SetRightCharacter()
+	{
+		var orderedLeftCharacters = _characters.OrderBy(c => c.Position.X).ToList();
+		int selectedIndex = orderedLeftCharacters.IndexOf(_selectedCharacter);
+
+		if (selectedIndex == orderedLeftCharacters.Count - 1 && orderedLeftCharacters.First() != null)
+		{
+			_selectedCharacter = orderedLeftCharacters.First();
+		}
+		else
+		{
+			_selectedCharacter = orderedLeftCharacters[selectedIndex + 1];
+		}
+	}
+	
+	
+	public override void _Process(double delta)
+	{
+		if (!_controllerActive)
+		{
+			return;
+		}
+		
+		float distance = Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition));
+		float speed = distance * 10;
+		if (Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
+		{
+			PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * speed);
+		}
+	}
 }

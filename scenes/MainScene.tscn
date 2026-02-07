@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://byddpxo0h8r42"]
+
+[ext_resource type="Script" uid="uid://c052vq4g1gudr" path="res://src/Player/PlayerController.cs" id="1_echbf"]
+[ext_resource type="Script" uid="uid://dp8de6y07h8v5" path="res://src/StateMachine/StateController.cs" id="1_ibiss"]
+[ext_resource type="PackedScene" uid="uid://cand2twgv5hb8" path="res://scenes/Tests/firstTest.tscn" id="2_c6dvc"]
+
+[node name="MainScene" type="Node2D" unique_id=1111302013]
+
+[node name="SceneContainer" type="Node2D" parent="." unique_id=1979080877]
+
+[node name="TileMapLayer" parent="SceneContainer" unique_id=774873069 instance=ExtResource("2_c6dvc")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1666306098]
+
+[node name="StateController" type="Node2D" parent="." unique_id=1858046302 node_paths=PackedStringArray("_sceneContainer")]
+script = ExtResource("1_ibiss")
+_sceneContainer = NodePath("../SceneContainer/TileMapLayer")
+
+[node name="PlayerController" type="Node2D" parent="StateController" unique_id=2077752406 node_paths=PackedStringArray("PlayerCamera")]
+script = ExtResource("1_echbf")
+PlayerCamera = NodePath("../../Camera2D")
