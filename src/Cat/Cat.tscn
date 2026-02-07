@@ -38,7 +38,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_vcgdu")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -54,7 +54,9 @@ shape = SubResource("RectangleShape2D_i48jj")
 position = Vector2(0, -0.5)
 scale = Vector2(1, 0.9791667)
 sprite_frames = SubResource("SpriteFrames_jjgn2")
-animation = &"new_animation"
+animation = &"idle"
+frame = 3
+frame_progress = 0.47904497
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=537428203]
 target_position = Vector2(48, 0)

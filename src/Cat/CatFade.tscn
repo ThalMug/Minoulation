@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ckh3wde6bbg8c"]
+
+[ext_resource type="Texture2D" uid="uid://b1jcmidb6kyby" path="res://assets/Cats/Idle Fade2.png" id="1_u6im8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjgn2"]
+atlas = ExtResource("1_u6im8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jduxc"]
+atlas = ExtResource("1_u6im8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ifq6"]
+atlas = ExtResource("1_u6im8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i48jj"]
+atlas = ExtResource("1_u6im8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrn6p"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjgn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jduxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ifq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i48jj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" unique_id=1952435241]
+top_level = true
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -0.5)
+scale = Vector2(1, 0.9791667)
+sprite_frames = SubResource("SpriteFrames_mrn6p")
+animation = &"idle"
+frame = 1
+frame_progress = 0.53089964

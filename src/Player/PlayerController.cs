@@ -36,10 +36,32 @@ public partial class PlayerController : Node
 		{
 			SetRightCharacter();
 		}
-
-		if (@event.IsActionPressed("PreviousCharacter"))
+		else if (@event.IsActionPressed("PreviousCharacter"))
 		{
 			SetLeftCharacter();
+		}
+
+		else if (@event.IsActionPressed("MoveForward"))
+		{
+			_selectedCharacter.Forward();
+		}
+		else if (@event.IsActionPressed("MoveBackward"))
+		{
+			_selectedCharacter.Backward();
+		}
+		else if (@event.IsActionPressed("MoveLeft"))
+		{
+			_selectedCharacter.Left();
+		}
+		else if (@event.IsActionPressed("MoveRight"))
+		{
+			_selectedCharacter.Right();
+		}else if (@event.IsActionPressed("Wait"))
+		{
+			_selectedCharacter.Wait();	
+		}else if (@event.IsActionPressed("LaunchGame"))
+		{
+			_selectedCharacter.Launch();
 		}
 	}
 
