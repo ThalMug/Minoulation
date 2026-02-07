@@ -80,19 +80,6 @@ public partial class Cat : CharacterBody2D
 		_listActions.Add(Actions.NoMove);
 		move(Actions.NoMove);
 	}
-	public void Launch()
-	{
-		int i = 0;
-		foreach (AnimatedSprite2D fadeSprite in _fadeSpritList)
-		{
-			GD.Print(i++);
-			fadeSprite.Hide();
-			fadeSprite.QueueFree();
-			
-		}
-		GD.Print("Launch");
-		playActions();
-	}
 
 	public int GetActionsNumber()
 	{
@@ -111,7 +98,17 @@ public partial class Cat : CharacterBody2D
 
 	public void ResetPosition()
 	{
+		//resetGhost
+		foreach (AnimatedSprite2D fadeSprite in _fadeSpritList)
+		{
+			fadeSprite.Hide();
+			fadeSprite.QueueFree();
+			
+		}
+		_fadeSpritList.Clear();
+		//resetPosition
 		Position = _initialPosition;
+		resolution = true;
 	}
 
 	public void ResetListActions()
@@ -171,6 +168,7 @@ public partial class Cat : CharacterBody2D
 			}
 			Position += destination;
 		}
+		
 	}
 
 

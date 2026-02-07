@@ -40,7 +40,7 @@ public class ResolveInputsState : IState
     private async Task PlayAllActions()
     {
         ResetPositions();
-        await Task.Delay(TimeSpan.FromSeconds(1f));
+        await Task.Delay(TimeSpan.FromSeconds(.5f));
         
         
         int maxActions = _characters.Max(c => c.GetActionsNumber());
@@ -51,7 +51,7 @@ public class ResolveInputsState : IState
                 cat.PlayAction(i);
             }
 
-            await Task.Delay(TimeSpan.FromSeconds(1f));
+            await Task.Delay(TimeSpan.FromSeconds(.5f));
         }
         
         ResetPositions();
