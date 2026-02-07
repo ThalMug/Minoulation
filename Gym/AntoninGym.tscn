@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dnwwe70fd4soj"]
+
+[ext_resource type="Script" uid="uid://0k87uhlk373h" path="res://Scripts/Cat.cs" id="1_dnnkm"]
+
+[node name="Node2D" type="Node2D" unique_id=1189260134]
+
+[node name="Cat" type="Sprite2D" parent="." unique_id=471495233]
+script = ExtResource("1_dnnkm")
