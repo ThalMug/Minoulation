@@ -14,7 +14,7 @@
 
 [node name="StateController" type="Node2D" parent="." unique_id=1858046302 node_paths=PackedStringArray("_sceneContainer")]
 script = ExtResource("1_ibiss")
-_sceneContainer = NodePath("../SceneContainer/TileMapLayer")
+_sceneContainer = NodePath("../SceneContainer")
 
 [node name="PlayerController" type="Node2D" parent="StateController" unique_id=2077752406 node_paths=PackedStringArray("PlayerCamera")]
 script = ExtResource("1_echbf")

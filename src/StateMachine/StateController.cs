@@ -71,16 +71,14 @@ public partial class StateController : Node
 	private List<Cat> GetAllCharactersInScene()
 	{
 		List<Cat> characters = new List<Cat>();
-		foreach (Node child in _sceneContainer.GetChildren())
+		foreach (Node child in _sceneContainer.GetChild(0).GetChildren())
 		{
 			if (child is Cat characterBody2D)
 			{
-				//GD.PrintErr("adding");
 				characters.Add(characterBody2D);
 			}
 		}
 		
-		//GD.Print("End");
 		return characters;
 	}
 

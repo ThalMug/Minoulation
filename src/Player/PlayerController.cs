@@ -28,6 +28,11 @@ public partial class PlayerController : Node
 		}
 	}
 
+	public void DisablePlayerController()
+	{
+		_controllerActive = false;
+	}
+
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
@@ -70,11 +75,7 @@ public partial class PlayerController : Node
 		var orderedLeftCharacters = _characters.OrderBy(c => c.Position.X).ToList();
 		int selectedIndex = orderedLeftCharacters.IndexOf(_selectedCharacter);
 
-		if (selectedIndex == 0 && orderedLeftCharacters.Last() != null)
-		{
-			_selectedCharacter = orderedLeftCharacters.Last();
-		}
-		else
+		if (selectedIndex != 0)
 		{
 			_selectedCharacter = orderedLeftCharacters[selectedIndex - 1];
 		}
@@ -85,11 +86,7 @@ public partial class PlayerController : Node
 		var orderedLeftCharacters = _characters.OrderBy(c => c.Position.X).ToList();
 		int selectedIndex = orderedLeftCharacters.IndexOf(_selectedCharacter);
 
-		if (selectedIndex == orderedLeftCharacters.Count - 1 && orderedLeftCharacters.First() != null)
-		{
-			_selectedCharacter = orderedLeftCharacters.First();
-		}
-		else
+		if (selectedIndex != orderedLeftCharacters.Count - 1)
 		{
 			_selectedCharacter = orderedLeftCharacters[selectedIndex + 1];
 		}
@@ -104,10 +101,15 @@ public partial class PlayerController : Node
 		}
 		
 		float distance = Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition));
-		float speed = distance * 10;
+		float speed = distance;
 		if (Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
 		{
 			PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * speed);
+		}
+
+		if (true)
+		{
+			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(2.0f, 2.0f), (float)delta);	
 		}
 	}
 }
