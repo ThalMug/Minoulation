@@ -17,11 +17,16 @@ public class EnableControllerState : IState
     
     public void EnterState()
     {
+        GD.PrintErr("entering state controller");
         _playerController.EnablePlayerController(_characters);
+        _playerController.OnLaunch += LeaveState;
     }
 
     public void LeaveState()
     {
+        GD.PrintErr("leaving state controller");
+        _playerController.DisablePlayerController();
+        _playerController.OnLaunch -= LeaveState;
         StateController.Instance.GoToNextState();
     }
 }

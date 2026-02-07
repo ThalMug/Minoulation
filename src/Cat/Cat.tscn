@@ -57,10 +57,10 @@ frame_2/duration = 0.3
 frame_3/texture = ExtResource("6_gkuka")
 frame_3/duration = 0.3
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1669448478 node_paths=PackedStringArray("_uiNode")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1669448478 node_paths=PackedStringArray("rayCast2D")]
 position = Vector2(72, 409)
 script = ExtResource("1_mrn6p")
-_uiNode = NodePath("Marker2D/Control/HBoxContainer")
+rayCast2D = NodePath("RayCast2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552299899]
 shape = SubResource("RectangleShape2D_i48jj")

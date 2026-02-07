@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Godot;
@@ -7,6 +8,8 @@ namespace Minoulation.Player;
 
 public partial class PlayerController : Node
 {
+	public Action OnLaunch;
+	
 	[Export] 
 	private Camera2D PlayerCamera;
 	private Vector2 _targetPosition => _selectedCharacter?.Position ?? PlayerCamera.Position;
@@ -61,12 +64,14 @@ public partial class PlayerController : Node
 		else if (@event.IsActionPressed("MoveRight"))
 		{
 			_selectedCharacter.Right();
-		}else if (@event.IsActionPressed("Wait"))
+		}
+		else if (@event.IsActionPressed("Wait"))
 		{
 			_selectedCharacter.Wait();	
-		}else if (@event.IsActionPressed("LaunchGame"))
+		}
+		else if (@event.IsActionPressed("LaunchGame"))
 		{
-			_selectedCharacter.Launch();
+			OnLaunch?.Invoke();
 		}
 	}
 
@@ -97,11 +102,12 @@ public partial class PlayerController : Node
 	{
 		if (!_controllerActive)
 		{
+			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(.5f, .5f), (float)delta);
 			return;
 		}
 		
 		float distance = Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition));
-		float speed = distance;
+		float speed = distance * 10;
 		if (Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
 		{
 			PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * speed);
@@ -109,7 +115,7 @@ public partial class PlayerController : Node
 
 		if (true)
 		{
-			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(2.0f, 2.0f), (float)delta);	
+			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(2.0f, 2.0f), (float)delta * 2);	
 		}
 	}
 }

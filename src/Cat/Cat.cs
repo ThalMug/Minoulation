@@ -22,7 +22,7 @@ public partial class Cat : CharacterBody2D
 	[Export] private RayCast2D rayCast2D;
 	private PackedScene _fadeSprite = GD.Load<PackedScene>("src\\Cat\\CatFade.tscn");
 
-	private Vector2 _intialPosition;
+	private Vector2 _initialPosition;
 
 	private bool resolution = false;
 
@@ -34,16 +34,16 @@ public partial class Cat : CharacterBody2D
 
 
 	//initialition
-    public override void _Ready()
-    {
-        base._Ready();
-		_intialPosition = Position;
+	public override void _Ready()
+	{
+		base._Ready();
+		_initialPosition = Position;
 		_animatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-    }
+	}
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
 		_animatedSprite.Play("idle");
 
 		foreach (AnimatedSprite2D _sprite2D in _fadeSpritList)
@@ -52,7 +52,7 @@ public partial class Cat : CharacterBody2D
 			_sprite2D.Play("idle");
 		} 
 
-    }
+	}
 
 
 	public void Forward()
@@ -94,11 +94,36 @@ public partial class Cat : CharacterBody2D
 		playActions();
 	}
 
+	public int GetActionsNumber()
+	{
+		return _listActions.Count;
+	}
+
+	public void PlayAction(int index)
+	{
+		if (index > _listActions.Count - 1)
+		{
+			return;
+		}
+		
+		move(_listActions[index]);
+	}
+
+	public void ResetPosition()
+	{
+		Position = _initialPosition;
+	}
+
+	public void ResetListActions()
+	{
+		_listActions.Clear();
+	}
+	
 	public async void playActions()
 	{
 		resolution = true;
 		GD.Print("play actions");
-		Position = _intialPosition;
+		Position = _initialPosition;
 		foreach (Actions action in _listActions)
 		{
 			move(action);

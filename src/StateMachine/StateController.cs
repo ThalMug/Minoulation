@@ -17,6 +17,7 @@ public partial class StateController : Node
 		{
 			if (_instance == null)
 			{
+				GD.PrintErr("instanceee");
 				_instance = new StateController();
 			}
 
@@ -30,15 +31,18 @@ public partial class StateController : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		_instance = this;
+		
 		PlayerController playerController = GetNode<PlayerController>("PlayerController");
 		if (playerController == null)
 		{
 			GD.PrintErr("PlayerController is null");
 			return;
 		}
-		
-		States.Add(new EnableControllerState(playerController, GetAllCharactersInScene()));
-		States.Add(new ResolveInputsState());
+
+		var characters = GetAllCharactersInScene();
+		States.Add(new EnableControllerState(playerController, characters));
+		States.Add(new ResolveInputsState(characters));
 	}
 
 	public void StartStateSequences()
