@@ -61,15 +61,21 @@ public class ResolveInputsState : IState
         
         
         int maxActions = _characters.Max(c => c.GetActionsNumber());
+        bool shouldBreak = false;
         for (int i = 0; i < maxActions; i++)
         {
             foreach (Cat cat in _characters)
             {
                 cat.PlayAction(i);
-                CheckCatsPositions(i);
+                shouldBreak = !CheckCatsPositions(i);
             }
 
             await Task.Delay(TimeSpan.FromSeconds(.5f));
+
+            if (shouldBreak)
+            {
+                break;
+            }
         }
         
         win = IsWin();
@@ -78,8 +84,9 @@ public class ResolveInputsState : IState
         LeaveState();
     }
 
-    private void CheckCatsPositions(int actionIndex)
+    private bool CheckCatsPositions(int actionIndex)
     {
+        bool result = true;
         // Check all positions to see if cats collided
         var catPositionsGroup = _characters
             .GroupBy(cat => cat.Position)
@@ -91,6 +98,8 @@ public class ResolveInputsState : IState
             {
                 cat.EnableFight();
             }
+
+            result = false;
         }
         
         // Check if two cats are facing each other
@@ -107,9 +116,12 @@ public class ResolveInputsState : IState
                 if (nextPosA == catB.Position && nextPosB == catA.Position)
                 {
                     catA.ResetListActions();
+                    result = false;
                 }
             }
         }
+
+        return result;
     }
 
     private Vector2 PredictNextPosition(Cat cat, int actionIndex)

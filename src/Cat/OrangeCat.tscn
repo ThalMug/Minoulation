@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clb11g6jiophe"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_85b83"]
-[ext_resource type="PackedScene" uid="uid://ckh3wde6bbg8c" path="res://src/Cat/OrangeCatFade.tscn" id="2_3c7eh"]
+[ext_resource type="PackedScene" uid="uid://boqx8xmwtoydt" path="res://src/Cat/CatFade/OrangeCatFade.tscn" id="2_3c7eh"]
 [ext_resource type="Texture2D" uid="uid://dvrwfwc5w7ry3" path="res://assets/Cats/IdleOrange.png" id="2_u32q6"]
 [ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="3_3c7eh"]
 

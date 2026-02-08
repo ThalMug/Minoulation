@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjrc7wnlo3t6b"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_ywdhu"]
-[ext_resource type="PackedScene" uid="uid://s6do3gb7p4i5" path="res://src/Cat/BlackCatFade.tscn" id="2_s3fqf"]
+[ext_resource type="PackedScene" uid="uid://b0wgwhojedy3p" path="res://src/Cat/CatFade/BlackCatFade.tscn" id="2_s3fqf"]
 [ext_resource type="Texture2D" uid="uid://b87xka2be3vyc" path="res://assets/Cats/IdleBlack.png" id="2_ywdhu"]
 [ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="3_v4c28"]
 

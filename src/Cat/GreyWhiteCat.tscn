@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://4ocifiyk6w0u"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_ng7a8"]
-[ext_resource type="PackedScene" uid="uid://c3hrnnu2m8hu5" path="res://src/Cat/WhiteGreyCatFade.tscn" id="2_dmtie"]
 [ext_resource type="Texture2D" uid="uid://bud2jjyory4mi" path="res://assets/Cats/IdleWhiteGrey.png" id="3_rnrkb"]
 [ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="4_650iy"]
 
@@ -84,7 +83,7 @@ rayCast2D = NodePath("RayCast2D")
 _area2D = NodePath("Area2D")
 CatIdle = NodePath("AnimatedSprite2D")
 FightCloud = NodePath("AnimatedSprite2D2")
-_fadeSprite = ExtResource("2_dmtie")
+_fadeSprite = null
 _animatedSprite = NodePath("AnimatedSprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552299899]
