@@ -49,6 +49,7 @@ public class ResolveInputsState : IState
             foreach (Cat cat in _characters)
             {
                 cat.PlayAction(i);
+                cat.IsCollidingWithCat();
             }
 
             await Task.Delay(TimeSpan.FromSeconds(.5f));

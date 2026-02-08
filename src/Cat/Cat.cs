@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -20,6 +21,10 @@ public partial class Cat : CharacterBody2D
 	
 	private int gridSize = 48;
 	[Export] private RayCast2D rayCast2D;
+	[Export] private Area2D _area2D;
+	[Export] private AnimatedSprite2D CatIdle;
+	[Export] private AnimatedSprite2D FightCloud;
+	
 	private PackedScene _fadeSprite = GD.Load<PackedScene>("src\\Cat\\CatFade.tscn");
 
 	private Vector2 _initialPosition;
@@ -51,34 +56,32 @@ public partial class Cat : CharacterBody2D
 		
 			_sprite2D.Play("idle");
 		} 
-
 	}
-
-
+	
 	public void Forward()
 	{
 		_listActions.Add(Actions.Forward);
-		move(Actions.Forward);
+		Move(Actions.Forward);
 	}
 	public void Backward()
 	{
 		_listActions.Add(Actions.Backward);
-		move(Actions.Backward);
+		Move(Actions.Backward);
 	}
 	public void Left()
 	{
 		_listActions.Add(Actions.Left);
-		move(Actions.Left);
+		Move(Actions.Left);
 	}
 	public void Right()
 	{
 		_listActions.Add(Actions.Right);
-		move(Actions.Right);
+		Move(Actions.Right);
 	}
 	public void Wait()
 	{
 		_listActions.Add(Actions.NoMove);
-		move(Actions.NoMove);
+		Move(Actions.NoMove);
 	}
 
 	public int GetActionsNumber()
@@ -93,7 +96,7 @@ public partial class Cat : CharacterBody2D
 			return;
 		}
 		
-		move(_listActions[index]);
+		Move(_listActions[index]);
 	}
 
 	public void ResetPosition()
@@ -115,6 +118,26 @@ public partial class Cat : CharacterBody2D
 	{
 		_listActions.Clear();
 	}
+
+	public void EnableFight()
+	{
+		CatIdle.Visible = false;
+		FightCloud.Visible = true;
+	}
+
+	public bool IsCollidingWithCat()
+	{
+		var bodies = _area2D.GetOverlappingAreas();
+		
+		if (bodies.Any(b => b.GetParent() is Cat))
+		{
+			EnableFight();
+			GD.PrintErr($"There's a cat in my area {Position}");
+		}
+
+		return true;
+	}
+
 	
 	public async void playActions()
 	{
@@ -123,14 +146,14 @@ public partial class Cat : CharacterBody2D
 		Position = _initialPosition;
 		foreach (Actions action in _listActions)
 		{
-			move(action);
+			Move(action);
 			await ToSignal(GetTree().CreateTimer(.5), "timeout");
 		}
 
 		_listActions.Clear();
 	}
-
-	private void move(Actions action)
+	
+	private void Move(Actions action)
 	{
 		Vector2 direction = Vector2.Zero;
 		switch (action)

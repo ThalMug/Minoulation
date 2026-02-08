@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_mrn6p"]
 [ext_resource type="Texture2D" uid="uid://dvrwfwc5w7ry3" path="res://assets/Cats/Idle.png" id="2_vm2o8"]
-[ext_resource type="Texture2D" uid="uid://gj7vaucfmllu" path="res://assets/UI/Dot1.png" id="3_jduxc"]
-[ext_resource type="Texture2D" uid="uid://c3owei6oj3mns" path="res://assets/UI/Dot2.png" id="4_8ifq6"]
-[ext_resource type="Texture2D" uid="uid://bfj6dh7562xfi" path="res://assets/UI/Dot3.png" id="5_rwqty"]
-[ext_resource type="Texture2D" uid="uid://c4a35h5xvbwbk" path="res://assets/UI/Dot4.png" id="6_gkuka"]
+[ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="3_vm2o8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i48jj"]
 size = Vector2(48, 48)
@@ -46,21 +43,46 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_7ej4t"]
-frames = 4
-frame_0/texture = ExtResource("3_jduxc")
-frame_0/duration = 0.3
-frame_1/texture = ExtResource("4_8ifq6")
-frame_1/duration = 0.3
-frame_2/texture = ExtResource("5_rwqty")
-frame_2/duration = 0.3
-frame_3/texture = ExtResource("6_gkuka")
-frame_3/duration = 0.3
+[sub_resource type="AtlasTexture" id="AtlasTexture_i48jj"]
+atlas = ExtResource("3_vm2o8")
+region = Rect2(0, 0, 48, 48)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1669448478 node_paths=PackedStringArray("rayCast2D")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjgn2"]
+atlas = ExtResource("3_vm2o8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jduxc"]
+atlas = ExtResource("3_vm2o8")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ifq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i48jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjgn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jduxc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrn6p"]
+size = Vector2(44, 30)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1669448478 node_paths=PackedStringArray("rayCast2D", "_area2D", "CatIdle", "FightCloud")]
 position = Vector2(72, 409)
+collision_layer = 2
 script = ExtResource("1_mrn6p")
 rayCast2D = NodePath("RayCast2D")
+_area2D = NodePath("Area2D")
+CatIdle = NodePath("AnimatedSprite2D")
+FightCloud = NodePath("AnimatedSprite2D2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552299899]
 shape = SubResource("RectangleShape2D_i48jj")
@@ -73,32 +95,16 @@ animation = &"idle"
 frame = 3
 frame_progress = 0.47904497
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=849946072]
+visible = false
+sprite_frames = SubResource("SpriteFrames_8ifq6")
+frame_progress = 0.90629596
+
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=537428203]
 target_position = Vector2(48, 0)
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1553339351]
-position = Vector2(0, -24)
+[node name="Area2D" type="Area2D" parent="." unique_id=1505476847]
 
-[node name="Control" type="Control" parent="Marker2D" unique_id=420238075]
-layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-size_flags_horizontal = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Marker2D/Control" unique_id=1843367263]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -45.0
-offset_top = -10.0
-offset_right = 45.0
-offset_bottom = 21.99998
-grow_horizontal = 2
-theme_override_constants/separation = 4
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Marker2D/Control/HBoxContainer" unique_id=694336805]
-layout_mode = 2
-texture = SubResource("AnimatedTexture_7ej4t")
-expand_mode = 3
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=971107464]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_mrn6p")
