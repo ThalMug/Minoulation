@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b1no0jc7wjyiy"]
+[gd_scene format=3 uid="uid://cxt06whg6ccpl"]
 
 [ext_resource type="Texture2D" uid="uid://comd2pkoug0fe" path="res://assets/Cats/IdleGreyWhite.png" id="1_wj6ki"]
 
@@ -39,4 +39,6 @@ animations = [{
 }]
 
 [node name="BlackCatFade" type="AnimatedSprite2D" unique_id=399868136]
+top_level = true
+z_index = 4
 sprite_frames = SubResource("SpriteFrames_3v5qb")

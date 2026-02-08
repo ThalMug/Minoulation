@@ -43,7 +43,6 @@ animations = [{
 top_level = true
 z_index = 4
 z_as_relative = false
-position = Vector2(0, -0.5)
 scale = Vector2(1, 0.9791667)
 sprite_frames = SubResource("SpriteFrames_mrn6p")
 animation = &"idle"

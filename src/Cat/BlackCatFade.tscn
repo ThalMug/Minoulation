@@ -39,6 +39,7 @@ animations = [{
 }]
 
 [node name="BlackCatFade" type="AnimatedSprite2D" unique_id=399868136]
+top_level = true
 z_index = 4
 sprite_frames = SubResource("SpriteFrames_3v5qb")
 animation = &"idle"
