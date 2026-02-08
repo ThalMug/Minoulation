@@ -25,7 +25,8 @@ public partial class Cat : CharacterBody2D
 	[Export] private AnimatedSprite2D CatIdle;
 	[Export] private AnimatedSprite2D FightCloud;
 	
-	private PackedScene _fadeSprite = GD.Load<PackedScene>("src\\Cat\\CatFade.tscn");
+	[Export] private PackedScene _fadeSprite;
+	[Export] private AnimatedSprite2D _animatedSprite;
 
 	private Vector2 _initialPosition;
 
@@ -34,7 +35,7 @@ public partial class Cat : CharacterBody2D
 	List<Actions> _listActions = new List<Actions>();
 	List<AnimatedSprite2D> _fadeSpritList = new List<AnimatedSprite2D>();
 
-	private AnimatedSprite2D _animatedSprite;
+	
 
 
 
