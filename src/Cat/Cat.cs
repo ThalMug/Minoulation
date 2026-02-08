@@ -54,7 +54,6 @@ public partial class Cat : CharacterBody2D
 
 		foreach (AnimatedSprite2D _sprite2D in _fadeSpritList)
 		{
-		
 			_sprite2D.Play("idle");
 		} 
 	}

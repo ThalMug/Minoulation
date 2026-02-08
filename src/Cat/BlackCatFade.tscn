@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://s6do3gb7p4i5"]
+[gd_scene format=3 uid="uid://b0wgwhojedy3p"]
 
 [ext_resource type="Texture2D" uid="uid://b87xka2be3vyc" path="res://assets/Cats/IdleBlack.png" id="1_tr0po"]
 
@@ -34,9 +34,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_2axmn")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
 [node name="BlackCatFade" type="AnimatedSprite2D" unique_id=399868136]
+z_index = 4
 sprite_frames = SubResource("SpriteFrames_3v5qb")
+animation = &"idle"

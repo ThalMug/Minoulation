@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c56cpqbgloquc"]
+[gd_scene format=3 uid="uid://clb11g6jiophe"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_85b83"]
 [ext_resource type="PackedScene" uid="uid://ckh3wde6bbg8c" path="res://src/Cat/OrangeCatFade.tscn" id="2_3c7eh"]

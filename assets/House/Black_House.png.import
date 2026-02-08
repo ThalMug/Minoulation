@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dd3txt2sa1c2"
-path="res://.godot/imported/premade_buildings_demo.png-e9b1f522298cb1c5be7a3f37fd0fc799.ctex"
+uid="uid://c8j6d82w8u3qf"
+path="res://.godot/imported/Black_House.png-17d8908bf21af665cc64cef93743cd92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/House/premade_buildings_demo.png"
-dest_files=["res://.godot/imported/premade_buildings_demo.png-e9b1f522298cb1c5be7a3f37fd0fc799.ctex"]
+source_file="res://assets/House/Black_House.png"
+dest_files=["res://.godot/imported/Black_House.png-17d8908bf21af665cc64cef93743cd92.ctex"]
 
 [params]
 
