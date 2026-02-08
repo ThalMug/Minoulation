@@ -7,4 +7,7 @@
   <ItemGroup>
     <Content Include="src\UI\GlobalInformationView.cs.uid" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\Audio\" />
+  </ItemGroup>
 </Project>

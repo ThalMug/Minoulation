@@ -35,10 +35,6 @@ public partial class Cat : CharacterBody2D
 	List<Actions> _listActions = new List<Actions>();
 	List<AnimatedSprite2D> _fadeSpritList = new List<AnimatedSprite2D>();
 
-	
-
-
-
 	//initialition
 	public override void _Ready()
 	{
@@ -189,6 +185,7 @@ public partial class Cat : CharacterBody2D
 				tempSprite.Position = Position;
 				_fadeSpritList.Add(tempSprite);
 				GD.Print(_fadeSpritList.Count);
+				AudioManager.Instance.PlayMoveSfx();
 			}
 			Position += destination;
 		}

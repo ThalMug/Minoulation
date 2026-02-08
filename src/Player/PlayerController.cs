@@ -125,18 +125,36 @@ public partial class PlayerController : Node
 	
 	public override void _Process(double delta)
 	{
-		PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(_targetZoom, (float)delta * 3f);
-		
 		if (!_controllerActive)
 		{
-			return;
+			if (_characters.Count > 0)
+			{
+				Rect2 boundingBox = new Rect2(_characters[0].GlobalPosition, Vector2.Zero);
+				foreach (var cat in _characters)
+				{
+					boundingBox = boundingBox.Expand(cat.GlobalPosition);
+				}
+
+				Vector2 centerTarget = boundingBox.GetCenter();
+				Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+				Vector2 neededSize = boundingBox.Size + new Vector2(200, 200);
+
+				float zoomFactor = Mathf.Min(screenSize.X / neededSize.X, screenSize.Y / neededSize.Y);
+				_targetZoom = Vector2.One * Mathf.Clamp(zoomFactor, 0.25f, 3f);
+
+				PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(centerTarget, (float)delta * PlayerCamera.GlobalPosition.DistanceTo(centerTarget));
+			}
 		}
-		
-		float distance = Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition));
-		float speed = distance * 10;
-		if (Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
+		else
 		{
-			PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * speed);
+			float distance = PlayerCamera.GlobalPosition.DistanceTo(_targetPosition);
+			if (distance > 0.5f)
+			{
+				PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * (distance * 10f));
+			}
 		}
+
+		float zoomMult = _controllerActive ? 2f : 0.15f;
+		PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(_targetZoom, (float)delta * zoomMult);
 	}
 }
