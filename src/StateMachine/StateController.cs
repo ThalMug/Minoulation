@@ -41,8 +41,9 @@ public partial class StateController : Node
 		}
 
 		var characters = GetAllCharactersInScene();
-		States.Add(new EnableControllerState(playerController, characters));
-		States.Add(new ResolveInputsState(characters));
+		var houses = GetAllHousesInScene();
+		States.Add(new EnableControllerState(playerController, characters, houses));
+		States.Add(new ResolveInputsState(characters, houses));
 	}
 
 	public void StartStateSequences()
@@ -84,6 +85,20 @@ public partial class StateController : Node
 		}
 		
 		return characters;
+	}
+
+	private List<House> GetAllHousesInScene()
+	{
+		List<House> houses = new List<House>();
+		foreach (Node child in _sceneContainer.GetChild(0).GetChildren())
+		{
+			if (child is House area2D)
+			{
+				houses.Add(area2D);
+			}
+		}
+		
+		return houses;
 	}
 
 	private bool istrue = false;

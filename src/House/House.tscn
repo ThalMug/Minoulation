@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bmslhxjbc01hk"]
+
+[ext_resource type="Texture2D" uid="uid://dcmg3et55uylt" path="res://assets/House/House.tres" id="1_hddkx"]
+[ext_resource type="Script" uid="uid://1nv4x2tywreo" path="res://src/House/House.cs" id="1_jvjy8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hddkx"]
+size = Vector2(96, 104)
+
+[node name="Area2D" type="Area2D" unique_id=1834908487]
+z_index = 4
+script = ExtResource("1_jvjy8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050189038]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_hddkx")
+debug_color = Color(0.9701205, 0, 0.4600069, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=833580319]
+texture = ExtResource("1_hddkx")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
