@@ -30,7 +30,6 @@ public partial class Cat : CharacterBody2D
 
 	private Vector2 _initialPosition;
 
-	private bool resolution = false;
 
 	List<Actions> _listActions = new List<Actions>();
 	List<AnimatedSprite2D> _fadeSpritList = new List<AnimatedSprite2D>();
@@ -96,7 +95,7 @@ public partial class Cat : CharacterBody2D
 			return;
 		}
 		
-		Move(_listActions[index]);
+		Move(_listActions[index], true);
 	}
 
 	public void ResetPosition()
@@ -107,12 +106,10 @@ public partial class Cat : CharacterBody2D
 		{
 			fadeSprite.Hide();
 			fadeSprite.QueueFree();
-			
 		}
 		_fadeSpritList.Clear();
 		//resetPosition
 		Position = _initialPosition;
-		resolution = true;
 	}
 
 	public void ResetListActions()
@@ -139,7 +136,6 @@ public partial class Cat : CharacterBody2D
 	
 	public async void playActions()
 	{
-		resolution = true;
 		GD.Print("play actions");
 		Position = _initialPosition;
 		foreach (Actions action in _listActions)
@@ -151,7 +147,7 @@ public partial class Cat : CharacterBody2D
 		_listActions.Clear();
 	}
 	
-	private void Move(Actions action)
+	private void Move(Actions action, bool isResolution = false)
 	{
 		Vector2 direction = Vector2.Zero;
 		switch (action)
@@ -179,7 +175,7 @@ public partial class Cat : CharacterBody2D
 		rayCast2D.ForceRaycastUpdate();
 		if (!rayCast2D.IsColliding())
 		{
-			if (!resolution)
+			if (!isResolution)
 			{
 				AnimatedSprite2D tempSprite = (AnimatedSprite2D) _fadeSprite.Instantiate();
 				tempSprite.Modulate = tempSprite.Modulate with { A = 0.5f };

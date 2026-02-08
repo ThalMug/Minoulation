@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://cand2twgv5hb8"]
 
 [ext_resource type="Texture2D" uid="uid://cg7ydc6s1c0db" path="res://assets/Tilesets/CraftPixMedieval/PNG/Tiles/timeset.png" id="1_qfp4e"]
-[ext_resource type="PackedScene" uid="uid://bmslhxjbc01hk" path="res://src/House/House.tscn" id="3_1omcy"]
-[ext_resource type="PackedScene" uid="uid://c56cpqbgloquc" path="res://src/Cat/OrangeCat.tscn" id="3_f1byg"]
+[ext_resource type="PackedScene" uid="uid://clb11g6jiophe" path="res://src/Cat/OrangeCat.tscn" id="3_f1byg"]
 [ext_resource type="PackedScene" uid="uid://bjrc7wnlo3t6b" path="res://src/Cat/BlackCat.tscn" id="4_1omcy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0sct"]
@@ -1410,9 +1409,6 @@ position = Vector2(264, 264)
 
 [node name="Cat2" parent="." unique_id=1971252568 instance=ExtResource("3_f1byg")]
 position = Vector2(264, 504)
-
-[node name="House" parent="." unique_id=151320589 instance=ExtResource("3_1omcy")]
-position = Vector2(574, 112)
 
 [node name="BlackCat" parent="." unique_id=518080280 instance=ExtResource("4_1omcy")]
 position = Vector2(1416, 264)
