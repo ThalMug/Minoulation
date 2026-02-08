@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://cg7ydc6s1c0db" path="res://assets/Tilesets/CraftPixMedieval/PNG/Tiles/timeset.png" id="2_lamwf"]
 [ext_resource type="Script" uid="uid://dp8de6y07h8v5" path="res://src/StateMachine/StateController.cs" id="3_tis5w"]
-[ext_resource type="PackedScene" uid="uid://clb11g6jiophe" path="res://src/Cat/OrangeCat.tscn" id="3_vcgdu"]
+[ext_resource type="PackedScene" path="res://src/Cat/OrangeCat.tscn" id="3_vcgdu"]
 [ext_resource type="Script" uid="uid://c052vq4g1gudr" path="res://src/Player/PlayerController.cs" id="4_5vlpe"]
-[ext_resource type="PackedScene" uid="uid://bjrc7wnlo3t6b" path="res://src/Cat/BlackCat.tscn" id="4_fh532"]
+[ext_resource type="PackedScene" path="res://src/Cat/BlackCat.tscn" id="4_fh532"]
 [ext_resource type="PackedScene" uid="uid://e5s8c6v6ws0y" path="res://src/House/OrangeHouse.tscn" id="5_5vlpe"]
 [ext_resource type="PackedScene" uid="uid://b3311jidgqxo" path="res://src/House/BlackHouse.tscn" id="7_fh532"]
 
@@ -187,9 +187,7 @@ texture_region_size = Vector2i(48, 48)
 1:5/0 = 0
 2:5/0 = 0
 3:5/0 = 0
-3:5/0/custom_data_0 = true
 4:5/0 = 0
-4:5/0/custom_data_1 = true
 5:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
@@ -1405,10 +1403,6 @@ texture_region_size = Vector2i(48, 48)
 [sub_resource type="TileSet" id="TileSet_f1byg"]
 tile_size = Vector2i(48, 48)
 physics_layer_0/collision_layer = 1
-custom_data_layer_0/name = "House0"
-custom_data_layer_0/type = 1
-custom_data_layer_1/name = "House1"
-custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_u0sct")
 
 [node name="Node2D" type="Node2D" unique_id=1835641364]
