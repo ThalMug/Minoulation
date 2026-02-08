@@ -183,6 +183,7 @@ public partial class Cat : CharacterBody2D
 			if (!resolution)
 			{
 				AnimatedSprite2D tempSprite = (AnimatedSprite2D) _fadeSprite.Instantiate();
+				tempSprite.Modulate = tempSprite.Modulate with { A = 0.5f };
 				AddChild(tempSprite);
 				tempSprite.Position = Position;
 				_fadeSpritList.Add(tempSprite);

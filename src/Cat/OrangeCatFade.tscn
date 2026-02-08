@@ -1,38 +1,38 @@
 [gd_scene format=3 uid="uid://ckh3wde6bbg8c"]
 
-[ext_resource type="Texture2D" uid="uid://b1jcmidb6kyby" path="res://assets/Cats/Idle Fade2.png" id="1_u6im8"]
+[ext_resource type="Texture2D" uid="uid://dvrwfwc5w7ry3" path="res://assets/Cats/IdleOrange.png" id="1_u6im8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jjgn2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_io3ys"]
+atlas = ExtResource("1_u6im8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7r5l"]
 atlas = ExtResource("1_u6im8")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jduxc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktfn0"]
 atlas = ExtResource("1_u6im8")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8ifq6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnnip"]
 atlas = ExtResource("1_u6im8")
 region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i48jj"]
-atlas = ExtResource("1_u6im8")
-region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mrn6p"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jjgn2")
+"texture": SubResource("AtlasTexture_io3ys")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jduxc")
+"texture": SubResource("AtlasTexture_r7r5l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8ifq6")
+"texture": SubResource("AtlasTexture_ktfn0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i48jj")
+"texture": SubResource("AtlasTexture_wnnip")
 }],
 "loop": true,
 "name": &"idle",
@@ -47,5 +47,4 @@ position = Vector2(0, -0.5)
 scale = Vector2(1, 0.9791667)
 sprite_frames = SubResource("SpriteFrames_mrn6p")
 animation = &"idle"
-frame = 1
 frame_progress = 0.53089964
