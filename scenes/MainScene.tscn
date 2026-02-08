@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c052vq4g1gudr" path="res://src/Player/PlayerController.cs" id="1_echbf"]
 [ext_resource type="Script" uid="uid://dp8de6y07h8v5" path="res://src/StateMachine/StateController.cs" id="1_ibiss"]
-[ext_resource type="PackedScene" uid="uid://cand2twgv5hb8" path="res://scenes/Tests/firstTest.tscn" id="2_c6dvc"]
-[ext_resource type="Script" uid="uid://cv3w24ys2tbyu" path="res://src/UI/GlobalInformationView.cs" id="4_611at"]
+[ext_resource type="PackedScene" uid="uid://mylc7wftr0gt" path="res://Levels/Level1.tscn" id="2_c6dvc"]
+[ext_resource type="Script" path="res://src/UI/GlobalInformationView.cs" id="4_611at"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c6dvc"]
 font_size = 32
