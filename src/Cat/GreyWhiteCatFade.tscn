@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b1no0jc7wjyiy"]
+
+[ext_resource type="Texture2D" uid="uid://comd2pkoug0fe" path="res://assets/Cats/IdleGreyWhite.png" id="1_wj6ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qnqy"]
+atlas = ExtResource("1_wj6ki")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yg12w"]
+atlas = ExtResource("1_wj6ki")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifjjt"]
+atlas = ExtResource("1_wj6ki")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr7h2"]
+atlas = ExtResource("1_wj6ki")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3v5qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qnqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yg12w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifjjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr7h2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BlackCatFade" type="AnimatedSprite2D" unique_id=399868136]
+sprite_frames = SubResource("SpriteFrames_3v5qb")
