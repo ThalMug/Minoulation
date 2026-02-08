@@ -9,10 +9,12 @@ public class EnableControllerState : IState
 {
     private PlayerController _playerController;
     private List<Cat> _characters;
-    public EnableControllerState(PlayerController playerController, List<Cat> catCharacters)
+    private List<House> _houses;
+    public EnableControllerState(PlayerController playerController, List<Cat> catCharacters, List<House> houses)
     {
         _playerController = playerController;
         _characters = catCharacters;
+        _houses = houses;
     }
     
     public void EnterState()

@@ -9,16 +9,30 @@ namespace Minoulation.StateMachine;
 public class ResolveInputsState : IState
 {
     private List<Cat> _characters;
+    private List<House> _houses;
 
-    public ResolveInputsState(List<Cat> characters)
+    public ResolveInputsState(List<Cat> characters, List<House> houses)
     {
         _characters = characters;
+        _houses = houses;
     }
     
     public void EnterState()
     {
         
         PlayAllActions();
+    }
+
+    public bool IsWin()
+    {
+        foreach (var house in _houses)
+        {
+            if (!house.getIsGoodCat())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void ResetPositions()
@@ -55,6 +69,14 @@ public class ResolveInputsState : IState
             await Task.Delay(TimeSpan.FromSeconds(.5f));
         }
         
+        if (IsWin())
+        {
+            GD.Print("Allons y les ami.es c'est GAGNÉ");
+        }
+        else
+        {
+             GD.Print("Chat pleure OUIN OUIN");
+        }
         ResetPositions();
         ResetLists();
         LeaveState();

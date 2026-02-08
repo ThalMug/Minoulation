@@ -1427,8 +1427,14 @@ position = Vector2(936, 600)
 collision_layer = 1
 
 [node name="House" parent="TileMapLayer" unique_id=151320589 node_paths=PackedStringArray("_mycat") instance=ExtResource("5_5vlpe")]
-position = Vector2(411, 265)
+position = Vector2(408.00003, 304)
+scale = Vector2(0.43810397, 0.44588405)
 _mycat = NodePath("../Cat")
+
+[node name="House2" parent="TileMapLayer" unique_id=1834908487 node_paths=PackedStringArray("_mycat") instance=ExtResource("5_5vlpe")]
+position = Vector2(672, 280)
+scale = Vector2(0.63149095, 0.516554)
+_mycat = NodePath("../Cat2")
 
 [node name="StateController" type="Node2D" parent="." unique_id=521915208 node_paths=PackedStringArray("_sceneContainer")]
 script = ExtResource("3_tis5w")
