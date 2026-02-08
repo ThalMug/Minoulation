@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://byddpxo0h8r42"]
+[gd_scene format=3 uid="uid://c8rmkrw7a3qyq"]
 
 [ext_resource type="Script" uid="uid://c052vq4g1gudr" path="res://src/Player/PlayerController.cs" id="1_echbf"]
 [ext_resource type="Script" uid="uid://dp8de6y07h8v5" path="res://src/StateMachine/StateController.cs" id="1_ibiss"]
