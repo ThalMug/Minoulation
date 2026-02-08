@@ -154,7 +154,7 @@ public partial class PlayerController : Node
 			}
 		}
 
-		float zoomMult = _controllerActive ? 2f : 0.15f;
+		float zoomMult = _controllerActive ? 2f : 0.5f;
 		PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(_targetZoom, (float)delta * zoomMult);
 	}
 }

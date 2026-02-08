@@ -21,6 +21,8 @@ public class EnableControllerState : IState
     {
         GD.PrintErr("entering state controller");
         _playerController.EnablePlayerController(_characters);
+
+        _playerController.OnLaunch -= LeaveState;
         _playerController.OnLaunch += LeaveState;
     }
 
