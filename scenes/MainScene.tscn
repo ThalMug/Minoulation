@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c052vq4g1gudr" path="res://src/Player/PlayerController.cs" id="1_echbf"]
 [ext_resource type="Script" uid="uid://dp8de6y07h8v5" path="res://src/StateMachine/StateController.cs" id="1_ibiss"]
 [ext_resource type="PackedScene" uid="uid://mylc7wftr0gt" path="res://Levels/Level1.tscn" id="2_1wiy7"]
-[ext_resource type="PackedScene" path="res://Levels/Level2.tscn" id="3_u1u68"]
+[ext_resource type="PackedScene" uid="uid://cqbe0hkrrkxvj" path="res://Levels/Level2.tscn" id="3_u1u68"]
 [ext_resource type="Script" uid="uid://cv3w24ys2tbyu" path="res://src/UI/GlobalInformationView.cs" id="4_611at"]
 [ext_resource type="Script" uid="uid://bb74j23uqtbie" path="res://src/Audio/AudioManager.cs" id="5_ygjfp"]
 [ext_resource type="AudioStream" uid="uid://bq8roqshlq264" path="res://assets/Musics SFX/moveSFX.wav" id="6_1wiy7"]
@@ -21,19 +21,6 @@ tags = {
 }
 
 [node name="MainScene" type="Node2D" unique_id=1111302013]
-
-[node name="SceneContainer" type="Node2D" parent="." unique_id=1979080877]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1666306098]
-
-[node name="StateController" type="Node2D" parent="." unique_id=1858046302 node_paths=PackedStringArray("_sceneContainer")]
-script = ExtResource("1_ibiss")
-_sceneContainer = NodePath("../SceneContainer")
-_levelScenes = Array[PackedScene]([ExtResource("2_1wiy7"), ExtResource("3_u1u68")])
-
-[node name="PlayerController" type="Node2D" parent="StateController" unique_id=2077752406 node_paths=PackedStringArray("PlayerCamera")]
-script = ExtResource("1_echbf")
-PlayerCamera = NodePath("../../Camera2D")
 
 [node name="Control" type="Control" parent="." unique_id=956202532 node_paths=PackedStringArray("_playerController", "_catActionCountLabel", "_minCountLabel", "_canvasLayer")]
 layout_mode = 3
@@ -67,6 +54,7 @@ text = "###"
 label_settings = SubResource("LabelSettings_c6dvc")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/CanvasLayer/VBoxContainer" unique_id=2013495879]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=2042304049]
@@ -78,6 +66,19 @@ label_settings = SubResource("LabelSettings_c6dvc")
 layout_mode = 2
 text = "###"
 label_settings = SubResource("LabelSettings_c6dvc")
+
+[node name="SceneContainer" type="Node2D" parent="." unique_id=1979080877]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1666306098]
+
+[node name="StateController" type="Node2D" parent="." unique_id=1858046302 node_paths=PackedStringArray("_sceneContainer")]
+script = ExtResource("1_ibiss")
+_sceneContainer = NodePath("../SceneContainer")
+_levelScenes = Array[PackedScene]([ExtResource("2_1wiy7"), ExtResource("3_u1u68")])
+
+[node name="PlayerController" type="Node2D" parent="StateController" unique_id=2077752406 node_paths=PackedStringArray("PlayerCamera")]
+script = ExtResource("1_echbf")
+PlayerCamera = NodePath("../../Camera2D")
 
 [node name="SfxMusics" type="Node2D" parent="." unique_id=1297737820 node_paths=PackedStringArray("MusicAudioPlayer", "SfxAudioPlayer")]
 script = ExtResource("5_ygjfp")

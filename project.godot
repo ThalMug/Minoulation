@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Minoulation"
-run/main_scene="uid://byddpxo0h8r42"
+run/main_scene="uid://bqfv4j1gmvya6"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
