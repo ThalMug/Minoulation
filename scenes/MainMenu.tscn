@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bqfv4j1gmvya6"]
+
+[ext_resource type="Script" uid="uid://m4wpbcdfrhvc" path="res://src/UI/MainMenu.cs" id="1_2wh52"]
+[ext_resource type="Shader" uid="uid://dfqareos3880a" path="res://scenes/MainMenu.gdshader" id="1_yqorp"]
+[ext_resource type="FontFile" uid="uid://dmrlnb4ehnc2w" path="res://assets/Tilesets/CraftPixMedieval/PNG/Tiles/static/Nunito-Light.ttf" id="2_0ykhv"]
+[ext_resource type="PackedScene" uid="uid://byddpxo0h8r42" path="res://scenes/MainScene.tscn" id="2_ow34m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ykhv"]
+shader = ExtResource("1_yqorp")
+shader_parameter/vitesse = 0.5
+shader_parameter/intensite = 2.0
+shader_parameter/couleur_bleu = Color(0.1, 0.3, 0.8, 1)
+shader_parameter/couleur_rouge = Color(0.8, 0.1, 0.2, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2wh52"]
+font = ExtResource("2_0ykhv")
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_ow34m"]
+font = ExtResource("2_0ykhv")
+font_size = 72
+
+[node name="MainMenu" type="Control" unique_id=1626827008]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2wh52")
+MainSceneToLoad = ExtResource("2_ow34m")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1874664585]
+material = SubResource("ShaderMaterial_0ykhv")
+layout_mode = 0
+offset_right = 1929.0
+offset_bottom = 1087.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=515781208]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=927629331]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -425.5
+offset_top = 200.0
+offset_right = 425.5
+offset_bottom = 376.0
+grow_horizontal = 2
+pivot_offset = Vector2(0, 200)
+text = "Cats and Paths"
+label_settings = SubResource("LabelSettings_2wh52")
+
+[node name="Label2" type="Label" parent="CanvasLayer" unique_id=899206901]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -526.02
+offset_top = 574.0
+offset_right = 523.98
+offset_bottom = 750.0
+grow_horizontal = 2
+pivot_offset = Vector2(0, 200)
+text = "press enter to play"
+label_settings = SubResource("LabelSettings_ow34m")
+horizontal_alignment = 1

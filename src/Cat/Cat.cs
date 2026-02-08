@@ -27,7 +27,8 @@ public partial class Cat : CharacterBody2D
 	
 	[Export] private PackedScene _fadeSprite;
 	[Export] private AnimatedSprite2D _animatedSprite;
-
+	
+	public Action<int> OnActionMade;
 	private Vector2 _initialPosition;
 
 
@@ -60,27 +61,32 @@ public partial class Cat : CharacterBody2D
 	public void Forward()
 	{
 		_listActions.Add(Actions.Forward);
-		Move(Actions.Forward);
+		Move(Actions.Forward); 
+		OnActionMade?.Invoke(_listActions.Count);
 	}
 	public void Backward()
 	{
 		_listActions.Add(Actions.Backward);
 		Move(Actions.Backward);
+		OnActionMade?.Invoke(_listActions.Count);
 	}
 	public void Left()
 	{
 		_listActions.Add(Actions.Left);
 		Move(Actions.Left);
+		OnActionMade?.Invoke(_listActions.Count);
 	}
 	public void Right()
 	{
 		_listActions.Add(Actions.Right);
 		Move(Actions.Right);
+		OnActionMade?.Invoke(_listActions.Count);
 	}
 	public void Wait()
 	{
 		_listActions.Add(Actions.NoMove);
 		Move(Actions.NoMove);
+		OnActionMade?.Invoke(_listActions.Count);
 	}
 
 	public int GetActionsNumber()

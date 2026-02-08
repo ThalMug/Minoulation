@@ -9,6 +9,7 @@ namespace Minoulation.Player;
 public partial class PlayerController : Node
 {
 	public Action OnLaunch;
+	public Action<Cat> OnCatSelected;
 	
 	[Export] 
 	private Camera2D PlayerCamera;
@@ -27,6 +28,7 @@ public partial class PlayerController : Node
 		if (_characters.Count > 0)
 		{
 			_selectedCharacter = _characters[0];
+			OnCatSelected?.Invoke(_selectedCharacter);
 		}
 		else
 		{
@@ -104,6 +106,7 @@ public partial class PlayerController : Node
 		if (selectedIndex != 0)
 		{
 			_selectedCharacter = orderedLeftCharacters[selectedIndex - 1];
+			OnCatSelected?.Invoke(_selectedCharacter);
 		}
 	}
 
@@ -115,6 +118,7 @@ public partial class PlayerController : Node
 		if (selectedIndex != orderedLeftCharacters.Count - 1)
 		{
 			_selectedCharacter = orderedLeftCharacters[selectedIndex + 1];
+			OnCatSelected?.Invoke(_selectedCharacter);
 		}
 	}
 	

@@ -35,6 +35,7 @@ public partial class StateController : Node
 	{
 		_instance = this;
 		SetStatesAndScene();
+		StartStateSequences();
 	}
 
 	private void SetStatesAndScene()
