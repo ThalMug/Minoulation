@@ -73,11 +73,16 @@ public partial class StateController : Node
 
 	public void GoToNextState(bool shouldLoop = true)
 	{
+		GD.Print(shouldLoop.ToString());
 		if (shouldLoop)
 		{
 			_index++;
 			States[_index % States.Count].EnterState();
+		}else
+		{
+			SetStatesAndScene();
 		}
+
 	}
 
 	private bool GoToNextLevelOrQuit()

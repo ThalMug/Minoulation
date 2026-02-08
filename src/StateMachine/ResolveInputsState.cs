@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ public class ResolveInputsState : IState
 {
     private List<Cat> _characters;
     private List<House> _houses;
+    private bool win = false;
 
     public ResolveInputsState(List<Cat> characters, List<House> houses)
     {
@@ -70,14 +72,7 @@ public class ResolveInputsState : IState
             await Task.Delay(TimeSpan.FromSeconds(.5f));
         }
         
-        if (IsWin())
-        {
-            GD.Print("Allons y les ami.es c'est GAGNÉ");
-        }
-        else
-        {
-             GD.Print("Chat pleure OUIN OUIN");
-        }
+        win = IsWin();
         ResetPositions();
         ResetLists();
         LeaveState();
@@ -124,6 +119,6 @@ public class ResolveInputsState : IState
     
     public void LeaveState()
     {
-        StateController.Instance.GoToNextState(!IsWin());
+        StateController.Instance.GoToNextState(!win);
     }
 }
