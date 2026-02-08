@@ -1,43 +1,43 @@
-[gd_scene format=3 uid="uid://c5rysx8td2xop"]
+[gd_scene format=3 uid="uid://bwc88pci4hnt5"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_dp0dd"]
 [ext_resource type="PackedScene" uid="uid://b1jmgwsv5h3gc" path="res://src/Cat/CatFade/WhiteGreyCatFade.tscn" id="2_dp0dd"]
-[ext_resource type="Texture2D" uid="uid://comd2pkoug0fe" path="res://assets/Cats/IdleGreyWhite.png" id="3_dp0dd"]
+[ext_resource type="Texture2D" uid="uid://bud2jjyory4mi" path="res://assets/Cats/IdleWhiteGrey.png" id="4_gys72"]
 [ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="4_hcp76"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i48jj"]
 size = Vector2(48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gys72"]
-atlas = ExtResource("3_dp0dd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqgf6"]
+atlas = ExtResource("4_gys72")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8rik"]
-atlas = ExtResource("3_dp0dd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifygy"]
+atlas = ExtResource("4_gys72")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hcp76"]
-atlas = ExtResource("3_dp0dd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieoq6"]
+atlas = ExtResource("4_gys72")
 region = Rect2(0, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i1oja"]
-atlas = ExtResource("3_dp0dd")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a22hx"]
+atlas = ExtResource("4_gys72")
 region = Rect2(48, 48, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_jjgn2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_dp0dd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gys72")
+"texture": SubResource("AtlasTexture_mqgf6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e8rik")
+"texture": SubResource("AtlasTexture_ifygy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hcp76")
+"texture": SubResource("AtlasTexture_ieoq6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i1oja")
+"texture": SubResource("AtlasTexture_a22hx")
 }],
 "loop": true,
 "name": &"idle",
@@ -82,20 +82,19 @@ collision_layer = 2
 script = ExtResource("1_dp0dd")
 rayCast2D = NodePath("RayCast2D")
 _area2D = NodePath("Area2D")
-CatIdle = NodePath("AnimatedSprite2D")
+CatIdle = NodePath("")
 FightCloud = NodePath("AnimatedSprite2D2")
 _fadeSprite = ExtResource("2_dp0dd")
-_animatedSprite = NodePath("AnimatedSprite2D")
+_animatedSprite = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552299899]
 shape = SubResource("RectangleShape2D_i48jj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1317258781]
-position = Vector2(0, -0.5)
-scale = Vector2(1, 0.9791667)
-sprite_frames = SubResource("SpriteFrames_jjgn2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1216722914]
+position = Vector2(0, -0.9895935)
+scale = Vector2(1, 0.9587674)
+sprite_frames = SubResource("SpriteFrames_dp0dd")
 animation = &"idle"
-frame_progress = 0.41748106
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=849946072]
 visible = false

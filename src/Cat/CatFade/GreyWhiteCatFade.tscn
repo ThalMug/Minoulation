@@ -34,7 +34,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_sr7h2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 5.0
 }]
 
@@ -42,3 +42,4 @@ animations = [{
 top_level = true
 z_index = 4
 sprite_frames = SubResource("SpriteFrames_3v5qb")
+animation = &"idle"

@@ -1,29 +1,30 @@
 [gd_scene format=3 uid="uid://4ocifiyk6w0u"]
 
 [ext_resource type="Script" uid="uid://d3fihomae4u6d" path="res://src/Cat/Cat.cs" id="1_ng7a8"]
-[ext_resource type="Texture2D" uid="uid://bud2jjyory4mi" path="res://assets/Cats/IdleWhiteGrey.png" id="3_rnrkb"]
+[ext_resource type="PackedScene" uid="uid://cxt06whg6ccpl" path="res://src/Cat/CatFade/GreyWhiteCatFade.tscn" id="2_ng7a8"]
 [ext_resource type="Texture2D" uid="uid://bd2ko7vwtjj3" path="res://assets/Cats/Fight Cloud.png" id="4_650iy"]
+[ext_resource type="Texture2D" uid="uid://comd2pkoug0fe" path="res://assets/Cats/IdleGreyWhite.png" id="4_dmtie"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i48jj"]
 size = Vector2(48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gys72"]
-atlas = ExtResource("3_rnrkb")
+atlas = ExtResource("4_dmtie")
 region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8rik"]
-atlas = ExtResource("3_rnrkb")
+atlas = ExtResource("4_dmtie")
 region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcp76"]
-atlas = ExtResource("3_rnrkb")
+atlas = ExtResource("4_dmtie")
 region = Rect2(0, 48, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i1oja"]
-atlas = ExtResource("3_rnrkb")
+atlas = ExtResource("4_dmtie")
 region = Rect2(48, 48, 48, 48)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_jjgn2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_rnrkb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -81,20 +82,20 @@ collision_layer = 2
 script = ExtResource("1_ng7a8")
 rayCast2D = NodePath("RayCast2D")
 _area2D = NodePath("Area2D")
-CatIdle = NodePath("AnimatedSprite2D")
+CatIdle = NodePath("")
 FightCloud = NodePath("AnimatedSprite2D2")
-_fadeSprite = null
-_animatedSprite = NodePath("AnimatedSprite2D")
+_fadeSprite = ExtResource("2_ng7a8")
+_animatedSprite = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=552299899]
 shape = SubResource("RectangleShape2D_i48jj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1317258781]
-position = Vector2(0, -0.5)
-scale = Vector2(1, 0.9791667)
-sprite_frames = SubResource("SpriteFrames_jjgn2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1272221787]
+position = Vector2(0, -0.9895935)
+scale = Vector2(1, 0.9587674)
+sprite_frames = SubResource("SpriteFrames_rnrkb")
 animation = &"idle"
-frame_progress = 0.8718669
+frame_progress = 0.41748106
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=849946072]
 visible = false
