@@ -1410,4 +1410,4 @@ position = Vector2(264, 264)
 position = Vector2(264, 504)
 
 [node name="Cat3" parent="." unique_id=2137499422 instance=ExtResource("3_f1byg")]
-position = Vector2(1435, 265)
+position = Vector2(1416, 264)

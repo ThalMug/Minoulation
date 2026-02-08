@@ -101,6 +101,7 @@ public partial class Cat : CharacterBody2D
 
 	public void ResetPosition()
 	{
+		DisableFight();
 		//resetGhost
 		foreach (AnimatedSprite2D fadeSprite in _fadeSpritList)
 		{
@@ -121,21 +122,18 @@ public partial class Cat : CharacterBody2D
 
 	public void EnableFight()
 	{
+		ResetListActions();
+		
 		CatIdle.Visible = false;
 		FightCloud.Visible = true;
+		FightCloud.Play();
 	}
 
-	public bool IsCollidingWithCat()
+	public void DisableFight()
 	{
-		var bodies = _area2D.GetOverlappingAreas();
-		
-		if (bodies.Any(b => b.GetParent() is Cat))
-		{
-			EnableFight();
-			GD.PrintErr($"There's a cat in my area {Position}");
-		}
-
-		return true;
+		CatIdle.Visible = true;
+		FightCloud.Visible = false;
+		CatIdle.Play();
 	}
 
 	
@@ -191,7 +189,20 @@ public partial class Cat : CharacterBody2D
 			}
 			Position += destination;
 		}
-		
+	}
+	
+	public Vector2 GetDirectionOfAction(int index)
+	{
+		if (index >= _listActions.Count) return Vector2.Zero;
+	
+		return _listActions[index] switch
+		{
+			Actions.Forward => Vector2.Up,
+			Actions.Backward => Vector2.Down,
+			Actions.Left => Vector2.Left,
+			Actions.Right => Vector2.Right,
+			_ => Vector2.Zero
+		};
 	}
 
 

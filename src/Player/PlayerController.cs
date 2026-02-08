@@ -13,12 +13,15 @@ public partial class PlayerController : Node
 	[Export] 
 	private Camera2D PlayerCamera;
 	private Vector2 _targetPosition => _selectedCharacter?.Position ?? PlayerCamera.Position;
+	private Vector2 _targetZoom = new(0.5f, 0.5f);
+	
 	private bool _controllerActive;
 	private List<Cat> _characters = new();
 	private Cat _selectedCharacter;
 
 	public void EnablePlayerController(List<Cat> characterBody2Ds)
 	{
+		_targetZoom = new Vector2(2f, 2f);
 		_characters = characterBody2Ds;
 		_controllerActive = true;
 		if (_characters.Count > 0)
@@ -33,11 +36,17 @@ public partial class PlayerController : Node
 
 	public void DisablePlayerController()
 	{
+		_targetZoom = new Vector2(0.5f, 0.5f);
 		_controllerActive = false;
 	}
 
 	public override void _Input(InputEvent @event)
 	{
+		if (!_controllerActive)
+		{
+			return;	
+		}
+		
 		base._Input(@event);
 
 		if (@event.IsActionPressed("NextCharacter"))
@@ -73,6 +82,18 @@ public partial class PlayerController : Node
 		{
 			OnLaunch?.Invoke();
 		}
+		else if (@event.IsActionPressed("ZoomIn"))
+		{
+			float newX = _targetZoom.X += 0.5f;
+			float newY = _targetZoom.Y += 0.5f;
+			_targetZoom = new Vector2(Mathf.Clamp(newX, 0.25f, 3f), Mathf.Clamp(newY, 0.25f, 3f));
+		}
+		else if (@event.IsActionPressed("ZoomOut"))
+		{
+			float newX = _targetZoom.X -= 0.5f;
+			float newY = _targetZoom.Y -= 0.5f;
+			_targetZoom = new Vector2(Mathf.Clamp(newX, 0.25f, 3f), Mathf.Clamp(newY, 0.25f, 3f));
+		}
 	}
 
 	private void SetLeftCharacter()
@@ -100,9 +121,10 @@ public partial class PlayerController : Node
 	
 	public override void _Process(double delta)
 	{
+		PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(_targetZoom, (float)delta * 3f);
+		
 		if (!_controllerActive)
 		{
-			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(.5f, .5f), (float)delta);
 			return;
 		}
 		
@@ -111,11 +133,6 @@ public partial class PlayerController : Node
 		if (Mathf.Abs(PlayerCamera.GlobalPosition.DistanceTo(_targetPosition)) > 0.5)
 		{
 			PlayerCamera.GlobalPosition = PlayerCamera.GlobalPosition.MoveToward(_targetPosition, (float)delta * speed);
-		}
-
-		if (true)
-		{
-			PlayerCamera.Zoom = PlayerCamera.Zoom.MoveToward(new Vector2(2.0f, 2.0f), (float)delta * 2);	
 		}
 	}
 }
