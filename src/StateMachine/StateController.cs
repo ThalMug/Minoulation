@@ -9,6 +9,8 @@ public partial class StateController : Node
 {
 	private static StateController _instance;
 	[Export] private Node2D _sceneContainer;
+	[Export] private Godot.Collections.Array<PackedScene> _levelScenes;
+	private int _currentLevelIndex = 0;
 	private List<CharacterBody2D> _characterBody2Ds;
 	
 	public static StateController Instance
@@ -32,6 +34,15 @@ public partial class StateController : Node
 	public override void _Ready()
 	{
 		_instance = this;
+		SetStatesAndScene();
+	}
+
+	private void SetStatesAndScene()
+	{
+		if (!GoToNextLevelOrQuit())
+		{
+			return;
+		}
 		
 		PlayerController playerController = GetNode<PlayerController>("PlayerController");
 		if (playerController == null)
@@ -59,18 +70,36 @@ public partial class StateController : Node
 		}
 	}
 
-	public void GoToNextState()
+	public void GoToNextState(bool shouldLoop = true)
 	{
-		if (!ShouldEndState())
+		if (shouldLoop)
 		{
 			_index++;
 			States[_index % States.Count].EnterState();
 		}
 	}
 
-	private bool ShouldEndState()
+	private bool GoToNextLevelOrQuit()
 	{
-		return false;
+		if (_currentLevelIndex > _levelScenes.Count - 1)
+		{
+			// Go to main menu
+			return false;
+		}
+		else
+		{
+			var children = _sceneContainer.GetChildren();
+			foreach (Node child in children)
+			{
+				child.QueueFree();
+			}
+
+			Node newLevel = _levelScenes[_currentLevelIndex].Instantiate();
+			_sceneContainer.AddChild(newLevel);
+			++_currentLevelIndex;
+		}
+
+		return true;
 	}
 
 	private List<Cat> GetAllCharactersInScene()

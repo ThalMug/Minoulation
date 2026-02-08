@@ -32,6 +32,7 @@ public class ResolveInputsState : IState
                 return false;
             }
         }
+        
         return true;
     }
 
@@ -123,6 +124,6 @@ public class ResolveInputsState : IState
     
     public void LeaveState()
     {
-        StateController.Instance.GoToNextState();
+        StateController.Instance.GoToNextState(!IsWin());
     }
 }

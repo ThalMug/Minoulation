@@ -8,15 +8,12 @@
 
 [node name="SceneContainer" type="Node2D" parent="." unique_id=1979080877]
 
-[node name="TileMapLayer" parent="SceneContainer" unique_id=774873069 instance=ExtResource("2_c6dvc")]
-
-[node name="TileMapLayer" parent="SceneContainer/TileMapLayer" unique_id=1705025791 instance=ExtResource("2_c6dvc")]
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1666306098]
 
 [node name="StateController" type="Node2D" parent="." unique_id=1858046302 node_paths=PackedStringArray("_sceneContainer")]
 script = ExtResource("1_ibiss")
 _sceneContainer = NodePath("../SceneContainer")
+_levelScenes = Array[PackedScene]([ExtResource("2_c6dvc")])
 
 [node name="PlayerController" type="Node2D" parent="StateController" unique_id=2077752406 node_paths=PackedStringArray("PlayerCamera")]
 script = ExtResource("1_echbf")
