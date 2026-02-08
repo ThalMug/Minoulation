@@ -22,6 +22,9 @@ public partial class PlayerController : Node
 
 	public void EnablePlayerController(List<Cat> characterBody2Ds)
 	{
+		StateController.Instance.OnLevelChanged -= CleanCharacters;
+		StateController.Instance.OnLevelChanged += CleanCharacters;
+		
 		_targetZoom = new Vector2(2f, 2f);
 		_characters = characterBody2Ds;
 		_controllerActive = true;
@@ -34,6 +37,12 @@ public partial class PlayerController : Node
 		{
 			GD.PrintErr("No characters");
 		}
+	}
+
+	private void CleanCharacters()
+	{
+		_characters.Clear();
+		_selectedCharacter = null;
 	}
 
 	public void DisablePlayerController()

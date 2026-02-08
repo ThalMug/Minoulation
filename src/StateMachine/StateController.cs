@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Minoulation.Player;
 using Minoulation.StateMachine;
 
@@ -12,6 +13,7 @@ public partial class StateController : Node
 	[Export] private Godot.Collections.Array<PackedScene> _levelScenes;
 	private int _currentLevelIndex = 0;
 	private List<CharacterBody2D> _characterBody2Ds;
+	public Action OnLevelChanged;
 	
 	public static StateController Instance
 	{
@@ -38,12 +40,14 @@ public partial class StateController : Node
 		StartStateSequences();
 	}
 
-	private void SetStatesAndScene()
+	private async void SetStatesAndScene()
 	{
-		if (!GoToNextLevelOrQuit())
+		if (!await GoToNextLevelOrQuit())
 		{
 			return;
 		}
+		
+		States.Clear();
 		
 		PlayerController playerController = GetNode<PlayerController>("PlayerController");
 		if (playerController == null)
@@ -56,6 +60,8 @@ public partial class StateController : Node
 		var houses = GetAllHousesInScene();
 		States.Add(new EnableControllerState(playerController, characters, houses));
 		States.Add(new ResolveInputsState(characters, houses));
+		
+		StartStateSequences();
 	}
 
 	public void StartStateSequences()
@@ -78,35 +84,44 @@ public partial class StateController : Node
 		{
 			_index++;
 			States[_index % States.Count].EnterState();
-		}else
+		}
+		else
 		{
 			SetStatesAndScene();
 		}
 
 	}
 
-	private bool GoToNextLevelOrQuit()
+	private async Task<bool> GoToNextLevelOrQuit() // Change return type to Task<bool>
 	{
+		OnLevelChanged?.Invoke();
+	
 		if (_currentLevelIndex > _levelScenes.Count - 1)
 		{
-			// Go to main menu
 			return false;
 		}
-		else
-		{
-			var children = _sceneContainer.GetChildren();
-			foreach (Node child in children)
-			{
-				child.QueueFree();
-			}
 
-			Node newLevel = _levelScenes[_currentLevelIndex].Instantiate();
-			_sceneContainer.AddChild(newLevel);
-			++_currentLevelIndex;
+		var children = _sceneContainer.GetChildren();
+		var exitTasks = new List<SignalAwaiter>();
+
+		foreach (Node child in children)
+		{
+			exitTasks.Add(ToSignal(child, Node.SignalName.TreeExited));
+			child.QueueFree();
 		}
+
+		foreach (var task in exitTasks)
+		{
+			await task;
+		}
+
+		Node newLevel = _levelScenes[_currentLevelIndex].Instantiate();
+		_sceneContainer.AddChild(newLevel);
+		++_currentLevelIndex;
 
 		return true;
 	}
+
 
 	private List<Cat> GetAllCharactersInScene()
 	{
@@ -134,18 +149,6 @@ public partial class StateController : Node
 		}
 		
 		return houses;
-	}
-
-	private bool istrue = false;
-	public override void _PhysicsProcess(double delta)
-	{
-		base._PhysicsProcess(delta);
-		if (Input.IsActionPressed("MoveForward") && !istrue)
-		{
-			istrue = true;
-			GD.PrintErr("Starting");
-			StartStateSequences();			
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

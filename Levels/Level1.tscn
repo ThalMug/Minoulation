@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://8nxa7b62g2h1" path="res://assets/Tilesets/CraftPixTowerDefence/1 Tiles/FieldsTileset.png" id="1_iotdp"]
 [ext_resource type="Texture2D" uid="uid://cg7ydc6s1c0db" path="res://assets/Tilesets/CraftPixMedieval/PNG/Tiles/timeset.png" id="1_w77jt"]
-[ext_resource type="PackedScene" path="res://src/Cat/OrangeCat.tscn" id="2_fhqol"]
+[ext_resource type="PackedScene" uid="uid://clb11g6jiophe" path="res://src/Cat/OrangeCat.tscn" id="2_fhqol"]
 [ext_resource type="Texture2D" uid="uid://cdjyid21vsvk4" path="res://assets/Tilesets/First Asset pack.png" id="3_dl8mf"]
-[ext_resource type="PackedScene" path="res://src/Cat/BlackCat.tscn" id="3_iotdp"]
+[ext_resource type="PackedScene" uid="uid://bjrc7wnlo3t6b" path="res://src/Cat/BlackCat.tscn" id="3_iotdp"]
 [ext_resource type="PackedScene" uid="uid://e5s8c6v6ws0y" path="res://src/House/OrangeHouse.tscn" id="5_05pb0"]
 [ext_resource type="PackedScene" uid="uid://b3311jidgqxo" path="res://src/House/BlackHouse.tscn" id="6_dl8mf"]
 
@@ -2012,7 +2012,7 @@ sources/0 = SubResource("TileSetAtlasSource_dl8mf")
 sources/1 = SubResource("TileSetAtlasSource_5g41i")
 sources/2 = SubResource("TileSetAtlasSource_7fl83")
 
-[node name="Node2D" type="Node2D" unique_id=757305190]
+[node name="level1node2dyoho" type="Node2D" unique_id=757305190]
 
 [node name="Background" type="TileMapLayer" parent="." unique_id=1554991162]
 visibility_layer = 4
